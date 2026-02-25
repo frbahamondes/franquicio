@@ -9,9 +9,10 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { connectDB } from './src/config/db.js';
 import indexRoutes from './src/routes/index.routes.js';
+import authRoutes from './src/routes/auth.routes.js';
+import adminRoutes from './src/routes/admin.routes.js';
 import 'dotenv/config';
 
-// __dirname no existe en ES Modules, esto lo recrea
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -47,5 +48,7 @@ app.use(session({
 
 // Rutas
 app.use('/', indexRoutes);
+app.use('/', authRoutes);
+app.use('/admin', adminRoutes);
 
 export default app;
