@@ -1,10 +1,12 @@
-<section class="hero">
-    <h1>Franquicias.cl</h1>
-    <p>El medio especializado en franquicias y food service de Chile.</p>
-</section>
+<section>
+    <h1>Noticias</h1>
 
-<section class="news-grid">
-    <h2>Últimas noticias</h2>
+    <nav class="categories">
+        <a href="/noticias">Todas</a>
+        {{#each categories}}
+        <a href="/noticias?categoria={{this}}">{{this}}</a>
+        {{/each}}
+    </nav>
 
     {{#if news.length}}
         {{#each news}}
@@ -15,6 +17,6 @@
         </article>
         {{/each}}
     {{else}}
-        <p>No hay noticias publicadas aún.</p>
+        <p>No hay noticias en esta categoría.</p>
     {{/if}}
 </section>

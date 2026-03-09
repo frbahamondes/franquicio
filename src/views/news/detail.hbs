@@ -1,0 +1,14 @@
+<article class="news-detail">
+    <span class="category">{{news.category}}</span>
+    <h1>{{news.title}}</h1>
+
+    {{#if news.source}}
+    <p class="source">Fuente: {{news.source}}</p>
+    {{/if}}
+
+    <div class="content">
+        {{{news.content}}}
+    </div>
+
+    <a href="/noticias">← Volver a noticias</a>
+</article>
