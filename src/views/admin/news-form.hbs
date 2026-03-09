@@ -1,0 +1,49 @@
+<div>
+    <h1>{{#if editing}}Editar noticia{{else}}Nueva noticia{{/if}}</h1>
+    <a href="/admin/noticias">← Volver</a>
+
+    {{#if error}}
+        <p>{{error}}</p>
+    {{/if}}
+
+    <form method="POST" action="{{#if editing}}/admin/noticias/editar/{{news._id}}{{else}}/admin/noticias/nueva{{/if}}">
+
+        <div>
+            <label>Título</label>
+            <input type="text" name="title" value="{{news.title}}" required>
+        </div>
+
+        <div>
+            <label>Resumen</label>
+            <textarea name="excerpt" required>{{news.excerpt}}</textarea>
+        </div>
+
+        <div>
+            <label>Contenido</label>
+            <textarea name="content" rows="10" required>{{news.content}}</textarea>
+        </div>
+
+        <div>
+            <label>Categoría</label>
+            <select name="category" required>
+                {{#each categories}}
+                <option value="{{this}}" {{#if (eq this ../news.category)}}selected{{/if}}>{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div>
+            <label>Fuente (opcional)</label>
+            <input type="text" name="source" value="{{news.source}}">
+        </div>
+
+        <div>
+            <label>
+                <input type="checkbox" name="published" {{#if news.published}}checked{{/if}}>
+                Publicar noticia
+            </label>
+        </div>
+
+        <button type="submit">{{#if editing}}Guardar cambios{{else}}Crear noticia{{/if}}</button>
+    </form>
+</div>

@@ -12,6 +12,7 @@ import indexRoutes from './src/routes/index.routes.js';
 import authRoutes from './src/routes/auth.routes.js';
 import adminRoutes from './src/routes/admin.routes.js';
 import 'dotenv/config';
+import { handlebarsHelpers } from './src/utils/helpers.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +26,11 @@ app.engine('hbs', engine({
     defaultLayout: 'main',
     layoutsDir: path.join(__dirname, 'src/views/layouts'),
     partialsDir: path.join(__dirname, 'src/views/partials'),
+    helpers: handlebarsHelpers,
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'src/views'));

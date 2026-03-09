@@ -1,0 +1,40 @@
+<div>
+    <h1>Noticias</h1>
+    <a href="/admin/noticias/nueva">+ Nueva noticia</a>
+    <a href="/admin">← Dashboard</a>
+    <a href="/logout">Cerrar sesión</a>
+
+    {{#if error}}
+        <p>{{error}}</p>
+    {{/if}}
+
+    {{#if news.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Categoría</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each news}}
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.category}}</td>
+                    <td>{{#if this.published}}Publicada{{else}}Borrador{{/if}}</td>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a href="/admin/noticias/editar/{{this._id}}">Editar</a>
+                        <a href="/admin/noticias/eliminar/{{this._id}}" onclick="return confirm('¿Eliminar esta noticia?')">Eliminar</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>No hay noticias aún. <a href="/admin/noticias/nueva">Crea la primera</a>.</p>
+    {{/if}}
+</div>
